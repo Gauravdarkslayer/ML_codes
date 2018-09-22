@@ -1,0 +1,15 @@
+
+python's index start from 0 whereas R's index starts from 1.
+
+In python to get the datasets:
+
+import pandas as pd
+dataset = pd.read_csv('Data.csv')
+X = datasets.iloc[: , :-1].values
+
+Y = datasets.iloc[: , 3].values
+iloc is used for independent values.
+
+
+In R to get the datasets:
+dataset = read.csv('Data.csv')

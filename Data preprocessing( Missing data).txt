@@ -1,0 +1,43 @@
+how to deal with missing data.
+
+1. We can remove the whole record where the data is missing.(But it can be dangerous).
+2. We can find out the mean of the observations where the data is missing. And then place that mean value where the data is missing.
+
+
+So, let's start woth python:
+	
+1. from sklearn.preprocessing import Imputer
+	##Here sklearn(scikit learn contains amazing liabraries).
+	##Preprocessing is the liabrary which contains useful classes for making machine learning models.
+	##Imputer is the class by which we can handle our data.
+
+2. imputer = Imputer(missing_values = 'NaN',strategy = 'mean',axis = 0)
+	#Here, imputer is a object created by us for Imputer class.
+	#missing_values is a parameter where we are going to check 	that where is NaN values i.e. missing values.
+	#strategy, where we can perform operations. Default is mean. 	We can also use mode or median. Which is also a good strategy.
+	#Axis, 0 for calculations on columns and 1 for rows.
+3. imputer = imputer.fit(X[: , 1:3]) 
+	#imputer is again a object we are assigning values to.
+	.fit is a method to get the values from the matrix which is X here.
+	X already contains our dataset.
+	We are only choose the right column where the data is missing.
+	The reason for we write 3 is upperbound is excluded.
+4. X[: , 1:3] = imputer.transform(X[: , 1:3])	
+	#X[: , 1:3] bcuz we just wanna transform these two columns.
+	#.transform() is a method which is going to replace missing 	data with mean values.
+	#.transform(X[: , 1:3]) bcuz we have missing values only in these 	two columns.
+
+If you can't see the full array ,just run np.set_printoptions(threshold = np.nan)
+
+So, let's start woth Ruby:
+
+1. dataset$Age =ifelse(is.na(dataset$Age),ave(dataset$Age, FUN = function(x) mean(x, na.rm= TRUE)),
+	dataset$Age)
+
+	#dataset$age = To select only age column of out dataset.
+	ifelse() = It's a function which have 3 parameters. 1st is testing , 2nd is if true, 3rd is if false.
+	is.na() =checks if the missing value present in our dataset$Age 	or not.
+	ave = predefined function which returns average.
+	FUN = to declare a function.
+	function(x) mean(x, na.rm)= mean function. That mean that we 	ask R to include the missing values.
+	  
